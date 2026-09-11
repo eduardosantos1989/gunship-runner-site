@@ -1,0 +1,89 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>GUNSHIP — DEAD SECTOR</title>
+    <script type="module" crossorigin src="/assets/index-DSt2cV0x.js"></script>
+    <link rel="stylesheet" crossorigin href="/assets/index-251FkuQQ.css">
+  </head>
+  <body>
+    <div id="app"></div>
+
+    <div id="hud" class="hidden">
+      <div id="topBar">
+        <div id="phaseLabel">SHIP ARRIVAL</div>
+        <div id="timer">0:00.0</div>
+        <canvas id="compass" width="560" height="44"></canvas>
+      </div>
+
+      <div id="objective">
+        <span id="objArrow">&#9650;</span>
+        <span id="objText">EXTRACTION 000m</span>
+      </div>
+
+      <div id="coverTag" class="neutral">COVER --</div>
+
+      <div id="minimapWrap">
+        <canvas id="minimap" width="192" height="192"></canvas>
+        <div id="minimapLabel">TACTICAL</div>
+      </div>
+
+      <div id="vitals">
+        <div class="barLabel">HULL</div>
+        <div class="bar"><div id="healthFill"></div></div>
+        <div class="barLabel">STAMINA</div>
+        <div class="bar"><div id="staminaFill"></div></div>
+      </div>
+
+      <div id="detectMeter" class="detect clear">
+        <div id="detectLabel">UNDETECTED</div>
+        <div class="detectBar"><div id="detectFill"></div></div>
+        <div id="weaponTag">SEARCHING</div>
+      </div>
+
+      <div id="messages"></div>
+      <div id="scanWarn" class="hidden">SPOTTED</div>
+      <div id="crosshair"></div>
+      <div id="flashDamage"></div>
+      <div id="flashWhite"></div>
+      <div id="vignette"></div>
+    </div>
+
+    <div id="startOverlay">
+      <div class="panel">
+        <h1>GUNSHIP</h1>
+        <div class="subtitle">AC-130 SURVIVAL PROTOCOL</div>
+        <div class="briefing">
+          <p>You are dropped from altitude into a random <b class="green">3 km sector</b>. Extraction is <b class="green">at least 2.5 km</b> away — this is a walk you have to survive.</p>
+          <p>An <b class="red">AC-130 gunship</b> sweeps the whole sector on patrol. It does not know where you are — but if its circle passes over you in the open, it sees you, and it will not leave once it has your scent.</p>
+          <p>Break line of sight: buildings, tree canopy, ridges, cliffs and craters. <b class="green">Crouch</b> and stay still and the detection meter drains again.</p>
+          <p>When the meter fills it is <b class="red">LOCKED</b> and opens fire. <b class="red">105 mm</b> levels everything within 5-10 m — buildings collapse to rubble, trees are felled, the ground itself craters. <b class="amber">50 mm</b> is a fast burst that kills on a hit. The blast will throw you if it doesn't kill you.</p>
+          <p>There is <b class="amber">no timer</b>. Reach the extraction zone without being killed.</p>
+        </div>
+        <div class="controls">
+          <span><b>WASD</b> move</span><span><b>SHIFT</b> sprint</span><span><b>SPACE</b> jump</span><span><b>CTRL</b> crouch</span><span><b>MOUSE</b> look</span><span><b>ESC</b> pause</span><span><b>R</b> restart</span>
+        </div>
+        <button id="deployBtn">CLICK TO DEPLOY</button>
+        <div class="seedline">seed <span id="seedLabel">----</span></div>
+      </div>
+    </div>
+
+    <div id="pauseOverlay" class="hidden">
+      <div class="panel small">
+        <h2>PAUSED</h2>
+        <button id="resumeBtn">RESUME</button>
+      </div>
+    </div>
+
+    <div id="endOverlay" class="hidden">
+      <div class="panel">
+        <h1 id="endTitle">EXTRACTED</h1>
+        <div id="endRank">RANK S</div>
+        <div id="endStats"></div>
+        <button id="againBtn">RUN ANOTHER (R)</button>
+      </div>
+    </div>
+
+  </body>
+</html>

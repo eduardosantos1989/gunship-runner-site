@@ -4,8 +4,8 @@
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>GUNSHIP — DEAD SECTOR</title>
-    <script type="module" crossorigin src="/assets/index-CiFbIhkO.js"></script>
-    <link rel="stylesheet" crossorigin href="/assets/index-C368NVaD.css">
+    <script type="module" crossorigin src="/assets/index-3bTGbVtj.js"></script>
+    <link rel="stylesheet" crossorigin href="/assets/index-BSQP3zBn.css">
   </head>
   <body>
     <div id="app"></div>
@@ -23,6 +23,7 @@
       </div>
 
       <div id="coverTag" class="neutral">COVER --</div>
+      <div id="stanceTag" class="stand">STANDING</div>
 
       <div id="minimapWrap">
         <canvas id="minimap" width="192" height="192"></canvas>
@@ -30,7 +31,7 @@
       </div>
 
       <div id="vitals">
-        <div class="barLabel">HULL</div>
+        <div class="barLabel">HEALTH</div>
         <div class="bar"><div id="healthFill"></div></div>
         <div class="barLabel">STAMINA</div>
         <div class="bar"><div id="staminaFill"></div></div>
@@ -40,11 +41,19 @@
         <div id="detectLabel">UNDETECTED</div>
         <div class="detectBar"><div id="detectFill"></div></div>
         <div id="weaponTag">SEARCHING</div>
+        <div id="sonarMeter" class="sonar idle">
+          <div id="sonarLabel">SONAR IDLE</div>
+          <div class="sonarBar"><div id="sonarFill"></div></div>
+        </div>
       </div>
 
       <div id="messages"></div>
       <div id="scanWarn" class="hidden">SPOTTED</div>
       <div id="crosshair"></div>
+      <div id="mapOverlay" class="hidden">
+        <canvas id="mapCanvas" width="900" height="900"></canvas>
+        <div id="mapLegend">SECTOR MAP — PRESS M TO CLOSE — YOU ARE NOT SAFE WHILE READING IT</div>
+      </div>
       <canvas id="dirtOverlay"></canvas>
       <div id="concussVignette"></div>
       <div id="flashDamage"></div>
@@ -61,10 +70,12 @@
           <p>An <b class="red">AC-130 gunship</b> sweeps the whole sector on patrol. It does not know where you are — but if its circle passes over you in the open, it sees you, and it will not leave once it has your scent.</p>
           <p>Break line of sight: buildings, tree canopy, ridges, cliffs and craters. <b class="green">Crouch</b> and stay still and the detection meter drains again.</p>
           <p>When the meter fills it is <b class="red">LOCKED</b> and opens fire. <b class="red">105 mm</b> levels everything within 5-10 m — buildings collapse to rubble, trees are felled, the ground itself craters. <b class="amber">50 mm</b> is a fast burst that kills on a hit. The blast will throw you if it doesn't kill you.</p>
+          <p>Go <b class="green">prone</b> and you are very hard to see — but you crawl, and the gunship carries a <b class="red">ground sonar</b>. It does not look for movement, it listens for the lack of it: stand still for <b class="amber">15 seconds</b>, or crawl everywhere on your belly, and the crew is handed your position. Cover does nothing against it. Keep moving.</p>
+          <p><b class="amber">Rail fences</b> divide the fields. You have to climb them, it costs you a second and some stamina, and you are silhouetted on top of one while you do it.</p>
           <p>There is <b class="amber">no timer</b>. Reach the extraction zone without being killed.</p>
         </div>
         <div class="controls">
-          <span><b>WASD</b> move</span><span><b>SHIFT</b> sprint</span><span><b>SPACE</b> jump</span><span><b>CTRL</b> crouch</span><span><b>MOUSE</b> look</span><span><b>ESC</b> pause</span><span><b>R</b> restart</span>
+          <span><b>WASD</b> move</span><span><b>SHIFT</b> sprint</span><span><b>SPACE</b> jump</span><span><b>CTRL</b> crouch</span><span><b>Z</b> prone</span><span><b>M</b> map</span><span><b>MOUSE</b> look</span><span><b>ESC</b> pause</span><span><b>R</b> restart</span>
         </div>
         <button id="deployBtn">CLICK TO DEPLOY</button>
         <div class="seedline">seed <span id="seedLabel">----</span></div>
